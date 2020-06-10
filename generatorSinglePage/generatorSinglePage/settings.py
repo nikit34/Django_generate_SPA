@@ -13,7 +13,7 @@ SECRET_KEY = 'pg&#(ngt=^al%6#z_%4j^ax2_m98i8!dv-h2mjvt(j1p9uzim='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nikit34.pythonanywhere.com']
+ALLOWED_HOSTS = ['nikit134.pythonanywhere.com']
 
 
 # Application definition
