@@ -1,0 +1,118 @@
+{% extends 'home.html' %}
+{% load hitcount_tags %}
+
+{% block content %}{% endblock %}
+
+  {% block content_field %}
+  <br>
+  <div class="container">
+  <div class="row">
+
+    <div class="col">
+      <h2>открытая база данных</h2>
+    </div>
+    <div class="col-">
+      <p>
+        <a href="{% url 'upload_page' %}" class="btn btn-outline-dark">Загрузить файл</a>
+      </p>
+    </div>
+    </div>
+    <br>
+  </div>
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>титульник</th>
+        <th>название документа</th>
+        <th>автор</th>
+        <th>категория</th>
+        <th>просмотры (всего)</th>
+        <th>последнее обновление</th>
+        <th>проверено</th>
+        <th>загрузить</th>
+        <th>удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in pages %}
+        <tr class="slug" onclick="location.href='{% url 'detail' p.slug %}'" value="{% url 'detail' p.slug %}">
+          <td>
+          {% if p.cover %}
+            <img src="{{ p.cover.url }}" alt="{{ p.name }}" style="width:100px;">
+          {% else %}
+            <span class="text-muted">No Cover</span>
+          {% endif %}
+          </td>
+
+          <td>
+          {% if p.name %}
+            {{ p.name }}
+          {% else %}
+            <span class="text-muted">No Name</span>
+          {% endif %}
+          </td>
+
+          <td>
+          {% if p.author %}
+            {{ p.author }}
+          {% else %}
+            <span class="text-muted">No Author</span>
+          {% endif %}
+          </td>
+
+          <td>
+          {% if p.category %}
+            {{ p.category }}
+          {% else %}
+            <span class="text-muted">No Category</span>
+          {% endif %}
+          </td>
+
+          <td>
+            <span class="views"></span> ({% get_hit_count for p %})
+          </td>
+
+          <td>
+          {% if p.publish_date %}
+            {{ p.publish_date }}
+          {% else %}
+            <span class="text-muted">No Last Update Date</span>
+          {% endif %}
+          </td>
+
+          <td>
+          {% if p.reviewed %}
+            {{ p.reviewed }}
+          {% else %}
+            <span class="text-muted">нет данных</span>
+          {% endif %}
+          </td>
+
+          <td>
+          {% if p.html_file %}
+            <a href="{{ p.html_file.url }}" class="btn btn-secondary bg-light btn-sm" target="_blank">
+              Скачать
+            </a>
+          {% else %}
+            <span class="text-muted">No File</span>
+          {% endif %}
+          </td>
+
+          {% if user.is_superuser %}
+          <td>
+            <form method="post" action="{% url 'delete_page' p.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">удалить</button>
+            </form>
+          </td>
+          {% else %}
+          <td>
+            <span class="text-muted">нет прав доступа</span>
+          </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block style_core %}
+<link rel="stylesheet" href="{% static 'core.css' %}">
+{% endblock %}
+
+
+{% block content %}
+  <h2 class="text-center">главная</h2>
+  <hr>
+  <br><br><br>
+
+
+
+  <br><br><br>
+  <hr>
+  <br>
+  <div class="float-left">Авторизованы как, {% if user.is_authenticated %}{{ user.username }}{% else %} аноним{% endif %}.</div>
+  <div class="float-right"><strong>Общее число регистраций: </strong> {{ count }}</div>
+  </p>
+{% endblock %}
+
+
+{% block content_field %}{% endblock %}
+
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'parse_statistic.js' %}"></script>
+{% endblock %}

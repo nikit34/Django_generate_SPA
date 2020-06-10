@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<h2 class="text-center">Загрузить документ</h2>
+<br><br>
+<div class="row">
+  <form method="post" enctype="multipart/form-data" style="margin-left:10%; width:80%;">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <hr>
+    <button type="submit" class="btn btn-outline-dark">Загрузить файл</button>
+  </form>
+</div>
+
+{% endblock %}
+
+{% block content_field %}{% endblock %}

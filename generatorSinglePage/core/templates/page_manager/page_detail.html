@@ -1,0 +1,107 @@
+{% extends 'home.html' %}
+{% load hitcount_tags %}
+
+{% block content %}
+
+  <br>
+    {% if page.name %}
+      <h2 class="text-center">{{page.name}}</h2>
+    {% else %}
+      <span class="text-muted">No Name</span>
+    {% endif %}
+  <br>  <br>  <br>  <br>
+    <div class="row">
+    <div class="col-sm-4">
+    {% if page.cover %}
+      <img src="{{ page.cover.url }}" alt="{{ page.name }}" style="width:600px;">
+    {% else %}
+      <span class="text-muted">No Cover</span>
+    {% endif %}
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+    <p>
+    {% if page.author %}
+      Автор: {{ page.author }}
+    {% else %}
+      <span class="text-muted">No Author</span>
+    {% endif %}
+    </p><p>
+      Просмотров: <span class="views"></span> (глобально: {% get_hit_count for page %})
+    </p><p>
+    {% if page.category %}
+      Категория: {{ page.category }}
+    {% else %}
+      <span class="text-muted">No Category</span>
+    {% endif %}
+    </p><p>
+    {% if page.publish_date %}
+      Последнее обновление: {{ page.publish_date }}
+    {% else %}
+      <span class="text-muted">No Last Update Date</span>
+    {% endif %}
+     </p><p>
+    {% if page.reviewed %}
+      Проверено: {{ page.reviewed }}
+    {% else %}
+      <span class="text-muted">Не проверено</span>
+    {% endif %}
+
+  <br>  <br>  <br>
+    {% if page.html_file %}
+      <a href="{{ page.html_file.url }}" class="btn btn-secondary bg-light btn-sm" style="margin-left: 100px; width: 200px;" target="_blank">
+        Скачать документ
+      </a>
+    {% else %}
+      <span class="text-muted">No File</span>
+    {% endif %}
+
+    <form method="post" action="{% url 'delete_page' page.pk %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm" style="margin-left: 100px; width: 200px;">Удалить</button>
+    </form>
+  </div>
+  </div>
+
+  <br>  <br>  <br>  <hr>  <br>
+    <h3 class="text-center">РЕЙТИНГ ДОКУМЕНТОВ</h3>
+  <br>  <br>
+  <table class="table mb-0">
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Автор</th>
+    <th>Просмотры</th>
+    <th>Обновлено</th>
+    <th>Проверено</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in popular_pages %}
+      <tr class="slug" onclick="location.href='{% url 'detail' p.slug %}'" value="{% url 'detail' p.slug %}">
+        <td>
+        <p>{{ p.name }}</p>
+        </td>
+        <td>
+        <p>{{ p.author }}</p>
+        </td>
+        <td>
+        <p><span class="views"></span> ({% get_hit_count for p %})</p>
+        </td>
+        <td>
+        <p>{{ p.publish_date }}</p>
+        </td>
+        <td>
+        <p>{{ p.reviewed }}</p>
+        </td>
+      </tr>
+    {% endfor %}
+
+  </tbody>
+  </table>
+  <br>  <br>  <br>
+
+{% endblock %}
+
+{% block content_field %}{% endblock %}

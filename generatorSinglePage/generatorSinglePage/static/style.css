@@ -1,0 +1,49 @@
+body {
+    background: rgb(0, 0, 0, 0.05);
+}
+nav {
+    background-color: rgb(100, 100, 255);
+    height: 80px;
+}
+nav li a {
+    font-weight: bold 900;
+    font-size: larger;
+    color: black;
+    transition: color 0.5s;
+
+}
+nav .navbar-brand{
+    font-size: large;
+    transition: font-size 1s;
+}
+nav .navbar-brand img{
+    width: 40px;
+    height: 40px;
+    transition: width 1s, height 1s;
+}
+nav .navbar-brand:hover {
+    font-size: medium;
+}
+nav .navbar-brand img:hover{
+    width: 35px;
+    height: 35px;
+}
+nav li a:hover {
+    color: rgb(216, 216, 216);
+}
+footer {
+    background: rgba(125, 125, 255, 0.5);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.stars {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    filter: grayscale(100%);
+}

@@ -1,0 +1,113 @@
+body {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0px;
+}
+nav {
+    background-color: rgba(100, 100, 255, 0.5);
+    height: 50px;
+}
+nav li a {
+    color: rgb(0, 0, 0);
+    transition: color 0.5s;
+}
+nav li a:hover {
+    color: rgb(255, 255, 255);
+}
+nav .navbar-brand {
+    font-size: medium;
+    transition: font-size 1s;
+}
+nav .navbar-brand img {
+    width: 30px;
+    height: 30px;
+    transition: width 1s, height 1s;
+}
+nav .navbar-brand:hover {
+    font-size: small;
+}
+nav .navbar-brand img:hover {
+    width: 25px;
+    height: 25px;
+}
+nav li div.dropdown-menu {
+    background-color: rgba(100, 100, 255, 0.5);
+}
+nav li div.dropdown-menu a:hover {
+    background-color: rgb(0, 0, 0);
+}
+footer {
+    background: rgba(125, 125, 255, 0.25);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+
+
+.toolbox {
+    height: 100vh;
+    position: absolute;
+    background-color: darkgray;
+    width: 55px;
+}
+
+.toolbox .group {
+    border-bottom: thin solid grey;
+}
+
+.toolbox .group .item {
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.toolbox .group .item:hover, .toolbox .group .item.active {
+    background-color: ghostwhite;
+}
+
+.toolbox .group .item img {
+    width: 100%;
+    filter: invert();
+}
+
+.toolbox .group.linewidths .item {
+    position: relative;
+}
+
+.toolbox .group.linewidths .item .linewidth {
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.toolbox.left {
+    left: 0px;
+    top: 50px;
+}
+
+.toolbox.right {
+    right: 0px;
+    top: 50px;
+}
+
+.toolbox .group.swatches .item .swatch {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+}
+
+#canvas {
+    position: absolute;
+    top:52%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}

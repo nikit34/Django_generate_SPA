@@ -1,0 +1,130 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% load hitcount_tags %}
+
+{% block content %}
+<h2 class="text-center">Поиск по фильтрам</h2>
+  <hr>
+  <br><br>
+<form method="GET" action=".">
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Название содержит..." />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="id_exact" placeholder="ID точный..."  />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="title_or_author" placeholder="Название или автор..." />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="form-row">
+    <div class="form-group col-md-2 col-lg-2">
+      <label for="inputEmail4">Минимум просмотров</label>
+      <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="view_count_min">
+    </div>
+    <div class="form-group col-md-2 col-lg-2">
+      <label for="inputPassword4">Максимум просмотров</label>
+      <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="10000 ?" name="view_count_max">
+    </div>
+
+    <div class="form-group col-md-2 col-lg-2 ">
+      <label for="inputEmail4">Обновление не раньше</label>
+      <input type="date" class="form-control" id="publishDateMin" name="date_min">
+    </div>
+    <div class="form-group col-md-2 col-lg-2">
+      <label for="inputPassword4">Обновление не позднее</label>
+      <input type="date" class="form-control" id="publishDateMax" name="date_max">
+    </div>
+  <div class="form-group col-md-4">
+      <label for="category">Категория</label>
+      <select type="category" class="form-control" name="category">
+      <option selected>Выберите...</option>
+      {% for cat in categories %}
+      <option value="{{ cat }}">{{ cat }}</option>
+      {% endfor %}
+      </select>
+  </div>
+  </div>
+    <br>
+  <div class="row">
+  <div class="col">
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="reviewed" name="reviewed">
+      <label class="form-check-label" for="reviewed">
+        Проверено
+      </label>
+    </div>
+  </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="notReviewed" name="notReviewed">
+        <label class="form-check-label" for="notReviewed">
+          Не проверено
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="col- col-2">
+    <button type="submit" class="btn btn-outline-dark">Поиск</button>
+  </div>
+</div>
+</form>
+<hr>
+<br><br><br>
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Категория</th>
+        <th>Просмотры</th>
+        <th>Обновление</th>
+        <th>Проверено</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in queryset %}
+        <tr class="slug" onclick="location.href='{% url 'detail' p.slug %}'" value="{% url 'detail' p.slug %}">
+          <td><p>{{ p.name }}</p></td>
+          <td><p>{{ p.author.name }}</p></td>
+          <td><p>{{ p.category }}</p></td>
+          <td><p><span class="views"></span> ({% get_hit_count for p %})</p></td>
+          <td><p>{{ p.publish_date }}</p></td>
+          <td><p>{{ p.reviewed }}</p></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block content_field %}{% endblock %}

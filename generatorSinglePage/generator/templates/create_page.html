@@ -1,0 +1,123 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block style_generator %}
+<link rel="stylesheet" href="{% static 'generator.css' %}">
+{% endblock %}
+
+{% block content %}
+<p class="text-center">Создать страницу</p>
+
+
+<div class="toolbox left">
+  <div class="group commands">
+    <div class="item" data-command="undo" title="Undo">
+      <img src="{% static 'img/controllers/icons8-undo-96.png' %}" />
+    </div>
+    <div class="item" data-command="download" title="Download">
+      <img src="{% static 'img/controllers/icons8-download-96.png' %}" />
+    </div>
+  </div>
+  <div class="group shapes">
+    <div class="item active" data-tool="line" title="Line">
+      <img src="{% static 'img/controllers/icons8-line-96.png' %}" />
+    </div>
+    <div class="item" data-tool="rectangle" title="Rectangle">
+      <img src="{% static 'img/controllers/icons8-rectangular-96.png' %}" />
+    </div>
+    <div class="item" data-tool="circle" title="Circle">
+      <img src="{% static 'img/controllers/icons8-circle-96.png' %}" />
+    </div>
+    <div class="item" data-tool="triangle" title="Triangle">
+      <img src="{% static 'img/controllers/icons8-trigonometry-96.png' %}" />
+    </div>
+  </div>
+  <div class="group tools">
+    <div class="item" data-tool="pencil" title="Pencil">
+      <img src="{% static 'img/controllers/icons8-pencil-100.png' %}" />
+    </div>
+    <div class="item" data-tool="brush" title="Brush">
+      <img src="{% static 'img/controllers/icons8-paint-brush-96.png' %}" />
+    </div>
+    <div class="item" data-tool="paint-bucket" title="Bucket">
+      <img src="{% static 'img/controllers/icons8-paint-bucket-80.png' %}" />
+    </div>
+    <div class="item" data-tool="eraser" title="Eraser">
+      <img src="{% static 'img/controllers/icons8-eraser-80.png' %}" />
+    </div>
+  </div>
+  <div class="group linewidths for-shapes" style="display: block;">
+    <div class="item active" data-line-width="1" title="1 Pixel">
+      <div class="linewidth" style="width:1px; height:1px;"></div>
+    </div>
+    <div class="item" data-line-width="2" title="2 Pixel">
+      <div class="linewidth" style="width:2px; height:2px;"></div>
+    </div>
+    <div class="item" data-line-width="3" title="3 Pixel">
+      <div class="linewidth" style="width:3px; height:3px;"></div>
+    </div>
+    <div class="item" data-line-width="4" title="4 Pixel">
+      <div class="linewidth" style="width:4px; height:4px;"></div>
+    </div>
+    <div class="item" data-line-width="5" title="5 Pixel">
+      <div class="linewidth" style="width:5px; height:5px;"></div>
+    </div>
+  </div>
+  <div class="group linewidths for-brush" style="display: none;">
+    <div class="item active" data-brush-size="4" title="4 Pixel">
+      <div class="linewidth" style="width:4px; height:4px;"></div>
+    </div>
+    <div class="item" data-brush-size="6" title="6 Pixel">
+      <div class="linewidth" style="width:6px; height:6px;"></div>
+    </div>
+    <div class="item" data-brush-size="8" title="8 Pixel">
+      <div class="linewidth" style="width:8px; height:8px;"></div>
+    </div>
+    <div class="item" data-brush-size="10" title="10 Pixel">
+      <div class="linewidth" style="width:10px; height:10px;"></div>
+    </div>
+    <div class="item" data-brush-size="12" title="12 Pixel">
+      <div class="linewidth" style="width:12px; height:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<canvas id="canvas" width="1200" height="600"></canvas>
+
+<div class="toolbox right">
+  <div class="group swatches">
+    <div class="item active" data-color="#ffffff">
+      <div class="swatch" style="background-color:#ffffff;"></div>
+    </div>
+    <div class="item" data-color="#000000">
+      <div class="swatch" style="background-color:#000000"></div>
+    </div>
+    <div class="item" data-color="#ff0000">
+      <div class="swatch" style="background-color:#ff0000"></div>
+    </div>
+    <div class="item" data-color="#00ff00">
+      <div class="swatch" style="background-color:#00ff00"></div>
+    </div>
+    <div class="item" data-color="#0000ff">
+      <div class="swatch" style="background-color:#0000ff"></div>
+    </div>
+    <div class="item" data-color="#00ffff">
+      <div class="swatch" style="background-color:#00ffff"></div>
+    </div>
+    <div class="item" data-color="#ff00ff">
+      <div class="swatch" style="background-color: #ff00ff"></div>
+    </div>
+    <div class="item" data-color="#ffff00">
+      <div class="swatch" style="background-color: #ffff00"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% load static %} {% block javascript %}
+<script type="module" src="{% static 'view.js' %}"></script>
+<script type="module" src="{% static 'tool.js' %}"></script>
+<script type="module" src="{% static 'paint.class.js' %}"></script>
+{% endblock %}
+{% include "base_footer.html" %}
+{% block base_footer %}
+{% endblock %}

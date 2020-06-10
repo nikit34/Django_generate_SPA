@@ -1,0 +1,18 @@
+tbody tr {
+    background-color:white;
+    transition: all 1s;
+}
+
+tbody tr:hover {
+    -webkit-box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.75);
+}
+
+.btn{
+    transition: all 1s;
+}
+
+.btn:hover{
+    background: rgb(200, 200, 200);
+}
