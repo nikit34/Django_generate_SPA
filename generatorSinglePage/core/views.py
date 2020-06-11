@@ -104,7 +104,7 @@ def searchFilterView(request):
     if is_valid_queryparam(date_max):
         qs = qs.filter(publish_date__lt=date_max)
 
-    if is_valid_queryparam(category) and category != 'Choose...':
+    if is_valid_queryparam(category) and category != 'Выберите...':
         qs = qs.filter(category__name=category)
 
     if reviewed == 'on' and not_reviewed != 'on':
